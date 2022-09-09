@@ -16,6 +16,7 @@ class ExpensesApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
+        fontFamily: 'Roboto',
       ),
     );
   }
@@ -28,18 +29,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    Transaction(
-      id: 1,
-      title: 'Tênis',
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 2,
-      title: 'Conta de luz',
-      value: 211.30,
-      date: DateTime.now(),
-    )
+    // Transaction(
+    //   id: 1,
+    //   title: 'Tênis',
+    //   value: 310.76,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 2,
+    //   title: 'Conta de luz',
+    //   value: 211.30,
+    //   date: DateTime.now(),
+    // )
   ];
 
   void _addTransaction(String title, double value) {
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(

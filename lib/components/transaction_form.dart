@@ -49,7 +49,12 @@ class _TransactionFormState extends State<TransactionForm> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: _submitForm,
-                child: Text("Nova Transação"),
+                child: Text(
+                  "Nova Transação",
+                  style: TextStyle(
+                    fontFamily: 'Arial',
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
                 ),
