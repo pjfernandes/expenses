@@ -6,13 +6,14 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final void Function(int) onRemove;
 
-  TransactionList({required this.transactions});
+  TransactionList({required this.transactions, required this.onRemove});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 430,
       child: transactions.isEmpty
           ? Column(
               children: <Widget>[
@@ -40,50 +41,37 @@ class TransactionList extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 final tr = transactions[index];
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 10,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.purple,
-                              width: 2,
-                            ),
-                          ),
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: FittedBox(
                           child: Text(
-                            "R\$ ${tr.value.toStringAsFixed(2)}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 100, 98, 98),
-                            ),
+                            "R\$ ${tr.value}",
                           ),
                         ),
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            tr.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            DateFormat('d MMM y').format(tr.date).toString(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                    title: Text(
+                      tr.title,
+                      style: TextStyle(
+                        color: Colors.purple,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
+                    ),
+                    subtitle: Text(
+                      DateFormat('d MMM y').format(tr.date),
+                    ),
+                    trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => onRemove(tr.id),
+                        color: Theme.of(context).errorColor),
                   ),
                 );
               },
